@@ -1,0 +1,18 @@
+  {{ serviceName }}:
+    image: aerokube/selenoid-ui:latest
+    networks:
+      - private
+    ports:
+      - "8080:8080"
+    labels:
+      'spryker.app.name': webdriver-ui
+      'spryker.app.type': services
+      'spryker.project': ${SPRYKER_DOCKER_PREFIX}:${SPRYKER_DOCKER_TAG}
+    depends_on:
+      - webdriver
+    healthcheck:
+      test: [ "CMD", "nc", "-z", "localhost", "8080" ]
+      interval: 10s
+      timeout: 5s
+      retries: 5
+    command: ["--selenoid-uri", "http://webdriver:4444"]
