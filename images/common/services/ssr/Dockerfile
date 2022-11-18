@@ -12,11 +12,11 @@ RUN apk update && apk upgrade && \
 
 RUN npm install -g npm@${SPRYKER_NPM_VERSION}
 RUN npm install -g nx
-COPY start.sh /tmp/start.sh
-RUN chmod +x /tmp/start.sh
+COPY start.sh /start.sh
+RUN chmod +x /start.sh
 
 RUN mkdir -p /data
 WORKDIR /data
 
 EXPOSE 2223
-CMD [ "sh", "-c", "/tmp/start.sh" ]
+CMD [ "sh", "-c", "/start.sh" ]
