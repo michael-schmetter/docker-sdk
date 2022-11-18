@@ -1,0 +1,13 @@
+  {{ serviceName }}:
+    build:
+      context: ./${DEPLOYMENT_PATH}/images/common/services/ssr/
+      dockerfile: Dockerfile
+    networks:
+      - private
+    labels:
+      'spryker.app.name': SSR
+      'spryker.app.type': services
+      'spryker.project': ${SPRYKER_DOCKER_PREFIX}:${SPRYKER_DOCKER_TAG}
+    environment:
+      SSR_SERVICE_DOMAIN: "{{ serviceData['domain'] }}"
+      GITHUB_TOKEN: ${GITHUB_TOKEN}
