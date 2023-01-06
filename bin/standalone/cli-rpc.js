@@ -93,6 +93,41 @@ class Dispatcher {
             response.end();
         });
     }
+
+    _options_backendSchema(request, response) {
+        response.setHeader('Access-Control-Allow-Origin', '*');
+        response.setHeader('Access-Control-Allow-Methods', 'GET');
+        response.statusCode = 201;
+        response.end();
+    }
+
+    _get_backendSchema(request, response) {
+        const fileLocation = process.env.SPRYKER_REST_API_SCHEMA_PATH || 'src/Generated/Glue/Specification/backend_spryker_rest_api.schema.yml';
+        const baseUrl = request.headers['x-schema-base-url'] || '';
+
+        fs.readFile(process.env.PWD + '/' + fileLocation, 'utf8', function (error,schemaContent) {
+
+            response.setHeader('Access-Control-Allow-Origin', '*');
+            response.setHeader('Access-Control-Allow-Methods', 'GET');
+
+            if (error) {
+                response.setHeader('Content-Type', 'text/plain');
+                response.statusCode = 500;
+                response.write(error.toString());
+                response.end();
+                return;
+            }
+
+            if (baseUrl !== '') {
+                schemaContent = schemaContent.replace(/(servers:\s*-\s*url:\s*['"])[^'"]*?(['"])/gm, '$1' + baseUrl + '$2');
+            }
+
+            response.setHeader('Content-Type', 'text/yaml');
+            response.statusCode = 200;
+            response.write(schemaContent);
+            response.end();
+        });
+    }
 }
 
 class Server {
