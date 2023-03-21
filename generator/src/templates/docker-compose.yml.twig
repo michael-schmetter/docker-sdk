@@ -152,6 +152,11 @@ volumes:
 {% for service, serviceData in services %}
   {{ service }}-{{ serviceData['engine'] }}-data:
     external: false
+{% if service in ['database','broker','scheduler'] %}
+    driver_opts:
+      type: tmpfs
+      device: tmpfs
+{% endif %}
 {% endfor %}
 
   ssh-relay:
