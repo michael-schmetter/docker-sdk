@@ -152,7 +152,7 @@ volumes:
 {% for service, serviceData in services %}
   {{ service }}-{{ serviceData['engine'] }}-data:
     external: false
-{% if service in ['database','broker','scheduler'] %}
+{% if service in ['database'] %}
     driver_opts:
       type: tmpfs
       device: tmpfs
