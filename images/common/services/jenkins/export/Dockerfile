@@ -14,7 +14,7 @@ COPY --from=spryker-jenkins-boilerplate /usr/share/jenkins/jenkins-cli.jar /usr/
 RUN bash -c 'if [ ! -z "$(which apk)" ]; then apk --no-cache add \
 	curl \
     bash \
-    openjdk11 \
+    openjdk17 \
     ttf-dejavu \
     gettext \
     jq && \
