@@ -1,3 +1,5 @@
+#!/bin/bash
+
 # syntax = docker/dockerfile:experimental
 # For brotli support you can use something like fholzer/nginx-brotli:v1.18.0
 ARG SPRYKER_FRONTEND_IMAGE=nginx:alpine
