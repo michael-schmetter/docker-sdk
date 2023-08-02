@@ -40,8 +40,8 @@ RUN bash -c 'if [ ! -z "$(which apt)" ]; then apt update -y && \
 COPY terraform/cli /envs/
 COPY context/jenkins/export/entrypoint.sh /entrypoint.sh
 COPY context/jenkins/export/jenkins.model.JenkinsLocationConfiguration.xml /opt/jenkins.model.JenkinsLocationConfiguration.xml
-COPY context/jenkins/export/com.newrelic.experts.jenkins.extensions.NewRelicGlobalConfiguration.xml /opt/com.newrelic.experts.jenkins.extensions.NewRelicGlobalConfiguration.xml
-COPY context/jenkins/export/nr-credentials.xml /opt/nr-credentials.xml
+#COPY context/jenkins/export/com.newrelic.experts.jenkins.extensions.NewRelicGlobalConfiguration.xml /opt/com.newrelic.experts.jenkins.extensions.NewRelicGlobalConfiguration.xml
+#COPY context/jenkins/export/nr-credentials.xml /opt/nr-credentials.xml
 RUN chmod +x /entrypoint.sh
 
 ENTRYPOINT ["/entrypoint.sh"]
