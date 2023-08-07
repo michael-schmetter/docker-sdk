@@ -104,7 +104,7 @@ readonly DEPLOYMENT_PATH="${DEPLOYMENT_DIR/$PROJECT_DIR/.}"
 readonly SECRETS_FILE_PATH="${DEPLOYMENT_DIR}/.secrets"
 readonly PROGRESS_TYPE=${PROGRESS_TYPE:-tty}
 if [ -n "$GITHUB_ACTIONS" ]; then
-    readonly PROGRESS_TYPE=auto
+    PROGRESS_TYPE=auto
 fi
 VERBOSE=${VERBOSE:-0}
 
