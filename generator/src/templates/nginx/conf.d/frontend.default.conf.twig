@@ -3,6 +3,10 @@ server_tokens off;
 
 large_client_header_buffers 4 32k;
 
+http2_max_concurrent_streams 128;
+keepalive_requests 700;
+limit_conn_zone $binary_remote_addr zone=perip:10m;
+
 {% if assets['compression'] is not empty %}
 {% for compressionEngine, compressionData in assets['compression'] %}
 

@@ -40,5 +40,6 @@ server {
         proxy_pass http://{% block upstream %}{{ upstream }}{% endblock upstream %};
     }
 {% endblock locations %}
+    limit_conn perip 10;
 {% endblock server %}
 }
